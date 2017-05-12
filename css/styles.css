@@ -1,3 +1,56 @@
+h1 {
+  padding: 0px 25px;
+  margin: 20px 35px;
+  border-left: 4px solid white;
+}
+
+.container {
+  margin-top: 10px;
+}
+
+.header {
+  font-family: 'Lobster', cursive;
+  background-color: black;
+  color: white;
+  font-size: 56px;
+  border-bottom: 25px solid grey;
+  position: static;
+}
+
 .myHide {
   display: none;
+}
+
+div.ordered-pizza div.panel-heading {
+  padding-left: 10px;
+}
+
+#toppings div.checkbox {
+  width: 50%;
+  display: inline-block;
+}
+
+#output {
+  border-radius: 0px 15px 15px 0px;
+  border-right: 8px solid black;
+}
+
+#order-price {
+  width: 12%;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 50px;
+  padding: auto;
+  background-color: grey;
+  display: inline-block;
+  float: left;
+}
+
+#order div.ordered-pizza {
+  display: inline-block;
+  width: 40%;
+  margin-left: 10px;
+  border-radius: 10px 0px 0px 10px;
+  border-left: 4px solid black;
 }

@@ -107,8 +107,8 @@ $(function() {
     //If pizza has a calculable price, calulatePrice and display price:
     if (ourPizza.size) {
       //Update output div:
-      $("#output h3#price").text(ourPizza.calcPrice().toFixed(2));
-      $("#output ul").empty();
+      $("#output div h3#price").text(ourPizza.calcPrice().toFixed(2));
+      $("#output div ul").empty();
       ourPizza.toppings.forEach(function(topping) {
         $("#output ul").append("<li>" + topping.name + "</li>");
       });
@@ -132,9 +132,11 @@ $(function() {
       toppingsString += "<li>" + topping.name + "</li> ";
     });
     $("#order").append(
-      "<div class='ordered-pizza'>" +
-        "<h3 id='pizza" + (ourParlor.currentOrder.length - 1) + "'>Pizza #" + ourParlor.currentOrder.length + "</h3>" +
-        "<div class='pizza-info myHide'>" +
+      "<div class='ordered-pizza panel panel-default'>" +
+        "<div class='panel-heading'>" +
+          "<h3 id='pizza" + (ourParlor.currentOrder.length - 1) + "'>Pizza #" + ourParlor.currentOrder.length + "</h3>" +
+        "</div>" +
+        "<div class='pizza-info myHide panel-body'>" +
           "<p>Price: $" + ourPizza.price.toFixed(2) + "</p>" +
           "<p>Size: " + ourPizza.size.name + "</p>" +
           "<ul>" +
@@ -143,11 +145,20 @@ $(function() {
         "</div>" +
       "</div>"
     );
+    //Update order's total price:
+    var totalPrice = 0;
+    ourParlor.currentOrder.forEach(function(pizza) {
+      totalPrice += pizza.price;
+    });
+    $("#order div#order-price").text(totalPrice);
     //Add click handler to show/hide pizza-info div:
-    $("#pizza" + (ourParlor.currentOrder.length - 1)).click(function() {
+    $("#pizza" + ourParlor.currentOrder.length).click(function() {
       $(this).next().slideToggle();
     });
-    //Re-initialize ourPizza:
+    //Re-initialize ourPizza and form:
     ourPizza = new Pizza();
+    $("form")[0].reset();
   });
+
+  //NOTE: Time permitting, add the ability to remove a pizza from the order. Update total price and ourParlor.currentOrder.
 });

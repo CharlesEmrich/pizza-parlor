@@ -1,14 +1,25 @@
-Create a website for a pizza company where a user can choose one or more individual toppings (cheese, pepperoni, artichoke, anchovy, etc) and a size to order a pizza and see the final cost.
-Allow the user to choose toppings and size for the pizza they'd like to order.
-Create a pizza object constructor with properties for toppings and size.
-Create a prototype method for the cost of a pizza depending on the selections chosen. Use your own formula for this.
-Objectives
-Your code will be reviewed for the following objectives:
-Code meets standards from previous weeks.
-Objects drive business logic (in JavaScript, not jQuery).
-Constructors and prototypes are used successfully.
-Application works as expected.
-Plain English specs are included in your README.
-Required functionality is in place by the 5:00pm Friday deadline.
-Project is in a polished, portfolio-quality state.
-Project demonstrates an understanding of this week's concepts. If prompted, you can discuss your code with an instructor using correct terminology.
+# Interstellar Pizza Parlor
+## Created by Charles Emrich
+
+### Description
+An app which allows users to build a pizza order by selecting toppings. As the user designs their pizza, the app dynamically displays the price for their pizza. A user can add multiple pizzas to their order, which will have its running total displayed.
+
+### Installation
+1. Download or clone the repository from [here](https://github.com/CharlesEmrich/pizza-parlor.git)
+2. Run index.html using the browser of your choice to play the game. To examine the source, open the project directory in the IDE or text editor you prefer.
+3. Enjoy theoretical pizzas!
+
+### Known Bugs
+There are currently no known bugs.
+
+### Specifications
+| Behavior | Input | Output |
+|==|==|==|
+| User loads page | N/A | Page populates correct list of sizes and toppings into the form. |
+| User adds a size to their pizza | *clicks "large"* | output div displays current pizza, its size, and its price |
+| User adds a topping to their pizza | *clicks "pepperoni"* | output div updates current displayed pizza to include "pepperoni" |
+| User commits a pizza to their order | *clicks "add to order" | output div clears and My Order div updates |
+
+#### License
+This project is licensed under the MIT License.
+Copyright (c) 2017 Charles Emrich & Olena Kuchko
