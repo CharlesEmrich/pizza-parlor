@@ -108,6 +108,7 @@ $(function() {
     if (ourPizza.size) {
       //Update output div:
       $("#output div h3#price").text(ourPizza.calcPrice().toFixed(2));
+      $("#output div p").text(ourPizza.size.name);
       $("#output div ul").empty();
       ourPizza.toppings.forEach(function(topping) {
         $("#output ul").append("<li>" + topping.name + "</li>");
@@ -123,8 +124,9 @@ $(function() {
   $("button[name='order-pizza']").click(function() {
     ourParlor.addPizza(ourPizza);
     //Clear current pizza display zone:
-    $("#output h3").empty();
+    $("#output h3").text("0.00");
     $("#output ul").empty();
+    $("#output p").empty();
     $("button[name='order-pizza']").hide();
     //Add to list of current pizzas in currentOrder:
     var toppingsString = "";
@@ -134,7 +136,7 @@ $(function() {
     $("#order").append(
       "<div class='ordered-pizza panel panel-default'>" +
         "<div class='panel-heading'>" +
-          "<h3 id='pizza" + (ourParlor.currentOrder.length - 1) + "'>Pizza #" + ourParlor.currentOrder.length + "</h3>" +
+          "<h3 id='pizza" + (ourParlor.currentOrder.length) + "'>Pizza #" + ourParlor.currentOrder.length + "</h3>" +
         "</div>" +
         "<div class='pizza-info myHide panel-body'>" +
           "<p>Price: $" + ourPizza.price.toFixed(2) + "</p>" +
@@ -153,7 +155,7 @@ $(function() {
     $("#order div#order-price").text(totalPrice);
     //Add click handler to show/hide pizza-info div:
     $("#pizza" + ourParlor.currentOrder.length).click(function() {
-      $(this).next().slideToggle();
+      $(this).parent().next().slideToggle();
     });
     //Re-initialize ourPizza and form:
     ourPizza = new Pizza();
