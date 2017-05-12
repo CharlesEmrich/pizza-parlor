@@ -89,9 +89,9 @@ $(function() {
       ourPizza.toppings.push(topping.value);
     });
     //Translate those values back into objects:
-    ourPizza.size = $.grep(ourParlor.sizes, function(e){ return e.id === ourPizza.size});
+    ourPizza.size = $.grep(ourParlor.sizes, function(e){ return e.id === ourPizza.size})[0];
     ourPizza.toppings = ourPizza.toppings.map(function(topping) {
-      return $.grep(ourParlor.toppings, function(e){ return e.id === topping});
+      return $.grep(ourParlor.toppings, function(e){ return e.id === topping})[0];
     });
     console.log(ourPizza);
 
