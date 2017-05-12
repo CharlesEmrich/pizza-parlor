@@ -132,9 +132,9 @@ $(function() {
       toppingsString += "<li>" + topping.name + "</li> ";
     });
     $("#order").append(
-      "<div id='" + (ourParlor.currentOrder.length - 1) + "' class='ordered-pizza'>" +
-        "<h3>Pizza #" + ourParlor.currentOrder.length + "</h3>" +
-        "<div class='pizza-info'>" +
+      "<div class='ordered-pizza'>" +
+        "<h3 id='pizza" + (ourParlor.currentOrder.length - 1) + "'>Pizza #" + ourParlor.currentOrder.length + "</h3>" +
+        "<div class='pizza-info myHide'>" +
           "<p>Price: $" + ourPizza.price.toFixed(2) + "</p>" +
           "<p>Size: " + ourPizza.size.name + "</p>" +
           "<ul>" +
@@ -143,6 +143,10 @@ $(function() {
         "</div>" +
       "</div>"
     );
+    //Add click handler to show/hide pizza-info div:
+    $("#pizza" + (ourParlor.currentOrder.length - 1)).click(function() {
+      $(this).next().slideToggle();
+    });
     //Re-initialize ourPizza:
     ourPizza = new Pizza();
   });
