@@ -1,8 +1,13 @@
 //// Business Logic ////
 function Parlor (sizes, toppings) {
-  this.sizes    = sizes;
-  this.toppings = toppings;
+  this.sizes        = sizes;
+  this.toppings     = toppings;
+  this.currentOrder = [];
 }
+Parlor.prototype.addPizza = function (pizza) {
+  this.currentOrder.push(pizza);
+};
+
 function Pizza (size, toppings) {
   this.size     = size;
   this.toppings = [];
@@ -100,7 +105,7 @@ $(function() {
       return $.grep(ourParlor.toppings, function(e){ return e.id === topping})[0];
     });
     //If pizza has a calculable price, calulatePrice and display price:
-    if (ourPizza.size !== "undefined") {
+    if (ourPizza.size) {
       //Update output div:
       $("#output h3#price").text(ourPizza.calcPrice().toFixed(2));
       $("#output ul").empty();
@@ -113,5 +118,32 @@ $(function() {
       $("button[name='order-pizza']").hide();
     }
     console.log(ourPizza);
+  });
+
+  $("button[name='order-pizza']").click(function() {
+    ourParlor.addPizza(ourPizza);
+    //Clear current pizza display zone:
+    $("#output h3").empty();
+    $("#output ul").empty();
+    $("button[name='order-pizza']").hide();
+    //Add to list of current pizzas in currentOrder:
+    var toppingsString = "";
+    ourPizza.toppings.forEach(function(topping) {
+      toppingsString += "<li>" + topping.name + "</li> ";
+    });
+    $("#order").append(
+      "<div id='" + (ourParlor.currentOrder.length - 1) + "' class='ordered-pizza'>" +
+        "<h3>Pizza #" + ourParlor.currentOrder.length + "</h3>" +
+        "<div class='pizza-info'>" +
+          "<p>Price: $" + ourPizza.price.toFixed(2) + "</p>" +
+          "<p>Size: " + ourPizza.size.name + "</p>" +
+          "<ul>" +
+            toppingsString +
+          "</ul>" +
+        "</div>" +
+      "</div>"
+    );
+    //Re-initialize ourPizza:
+    ourPizza = new Pizza();
   });
 });
