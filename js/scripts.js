@@ -56,11 +56,14 @@ $(function() {
     $("#sizes").append(
       "<div class='radio'>" +
         "<label>" +
-          "<input type='radio' value='" + ourParlor.sizes[i].id + "'>" +
+          "<input type='radio' name='size' value='" + ourParlor.sizes[i].id + "'>" +
           ourParlor.sizes[i].name + " $" + ourParlor.sizes[i].delta +
         "</label>" +
       "</div>"
     );
+    $("#sizes input").last().click(function() {
+      console.log($(this));
+    });
   }
   for (var i = 0; i < ourParlor.toppings.length; i++) {
     $("#toppings").append(
@@ -71,6 +74,9 @@ $(function() {
         "</label>" +
       "</div>"
     );
+    $("#toppings input").last().click(function() {
+      console.log($(this));
+    });
   }
 
   $("form").change(function() {
