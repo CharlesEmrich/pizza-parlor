@@ -14,7 +14,7 @@ There are currently no known bugs.
 
 ### Specifications
 | Behavior | Input | Output |
-|=========|=========|=========|
+|---------|---------|---------|
 | User loads page | N/A | Page populates correct list of sizes and toppings into the form. |
 | User adds a size to their pizza | *clicks "large"* | output div displays current pizza, its size, and its price |
 | User adds a topping to their pizza | *clicks "pepperoni"* | output div updates current displayed pizza to include "pepperoni" |
