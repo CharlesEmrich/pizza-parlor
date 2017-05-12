@@ -134,7 +134,7 @@ $(function() {
       toppingsString += "<li>" + topping.name + "</li> ";
     });
     $("#order").append(
-      "<div class='ordered-pizza panel panel-default'>" +
+      "<div class='ordered-pizza panel panel-info'>" +
         "<div class='panel-heading'>" +
           "<h3 id='pizza" + (ourParlor.currentOrder.length) + "'>Pizza #" + ourParlor.currentOrder.length + "</h3>" +
         "</div>" +
@@ -152,7 +152,7 @@ $(function() {
     ourParlor.currentOrder.forEach(function(pizza) {
       totalPrice += pizza.price;
     });
-    $("#order div#order-price").text(totalPrice);
+    $("#order div#order-price").text(totalPrice.toFixed(2));
     //Add click handler to show/hide pizza-info div:
     $("#pizza" + ourParlor.currentOrder.length).click(function() {
       $(this).parent().next().slideToggle();
