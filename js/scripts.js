@@ -101,7 +101,11 @@ $(function() {
     });
     //If pizza has a calculable price, calulatePrice and display price:
     if (ourPizza.size !== "undefined") {
-      $("#output h3#price").text(ourPizza.calcPrice());
+      $("#output h3#price").text(ourPizza.calcPrice().toFixed(2));
+      $("#output ul").empty();
+      ourPizza.toppings.forEach(function(topping) {
+        $("#output ul").append("<li>" + topping.name + "</li>");
+      });
     }
     console.log(ourPizza);
   });
