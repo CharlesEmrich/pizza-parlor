@@ -9,7 +9,13 @@ function Pizza (size, toppings) {
   this.price    = 0;
 }
 Pizza.prototype.calcPrice = function () {
-
+  var result = 0;
+  result += this.size.delta;
+  this.toppings.forEach(function(topping) {
+    result += parseFloat(topping.delta);
+  });
+  this.price = result;
+  return result;
 };
 
 function Topping (name, delta, id, image) {
@@ -62,9 +68,9 @@ $(function() {
         "</label>" +
       "</div>"
     );
-    $("#sizes input").last().click(function() {
-      console.log($(this));
-    });
+    // $("#sizes input").last().click(function() {
+    //   console.log($(this));
+    // });
   }
   for (var i = 0; i < ourParlor.toppings.length; i++) {
     $("#toppings").append(
@@ -75,9 +81,9 @@ $(function() {
         "</label>" +
       "</div>"
     );
-    $("#toppings input").last().click(function() {
-      console.log($(this));
-    });
+    // $("#toppings input").last().click(function() {
+    //   console.log($(this));
+    // });
   }
 
   var ourPizza = new Pizza();
@@ -93,7 +99,10 @@ $(function() {
     ourPizza.toppings = ourPizza.toppings.map(function(topping) {
       return $.grep(ourParlor.toppings, function(e){ return e.id === topping})[0];
     });
+    //If pizza has a calculable price, calulatePrice and display price:
+    if (ourPizza.size !== "undefined") {
+      $("#output h3#price").text(ourPizza.calcPrice());
+    }
     console.log(ourPizza);
-
   });
 });
