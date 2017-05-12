@@ -3,12 +3,15 @@ function Parlor (sizes, toppings) {
   this.sizes    = sizes;
   this.toppings = toppings;
 }
-
 function Pizza (size, toppings) {
   this.size     = size;
   this.toppings = [];
   this.price    = 0;
 }
+Pizza.prototype.calcPrice = function () {
+
+};
+
 function Topping (name, delta, id, image) {
   this.name  = name;
   this.delta = delta;
@@ -50,8 +53,6 @@ for (var i = 0; i < sizes.length; i++) {
 
 //// User Interface Logic ////
 $(function() {
-  console.log(ourParlor);
-  //BUG: For some reason, this creates radio boxes that can all be selected.
   for (var i = 0; i < ourParlor.sizes.length; i++) {
     $("#sizes").append(
       "<div class='radio'>" +
@@ -79,7 +80,20 @@ $(function() {
     });
   }
 
+  var ourPizza = new Pizza();
   $("form").change(function() {
+    //Set pizzas properties to current form state:
+    ourPizza.size = $("#sizes input:checked").val();
+    ourPizza.toppings = [];
+    $("#toppings input:checked").each(function(idx, topping) {
+      ourPizza.toppings.push(topping.value);
+    });
+    //Translate those values back into objects:
+    ourPizza.size = $.grep(ourParlor.sizes, function(e){ return e.id === ourPizza.size});
+    ourPizza.toppings = ourPizza.toppings.map(function(topping) {
+      return $.grep(ourParlor.toppings, function(e){ return e.id === topping});
+    });
+    console.log(ourPizza);
 
   });
 });
